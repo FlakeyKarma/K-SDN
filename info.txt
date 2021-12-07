@@ -1,0 +1,10 @@
+Make sure that you don't have any firewall up and that the routing looks similar to this:
+
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.0.0.1        0.0.0.0         UG    0      0        0 wlp3s0
+0.0.0.0         192.168.150.1   0.0.0.0         UG    202    0        0 eno1
+0.0.0.0         10.0.0.1        0.0.0.0         UG    303    0        0 wlp3s0
+10.0.0.0        0.0.0.0         255.255.255.0   U     303    0        0 wlp3s0
+192.168.150.0   0.0.0.0         255.255.255.0   U     202    0        0 eno1

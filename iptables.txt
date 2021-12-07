@@ -1,0 +1,11 @@
+This is what the 'iptables -nvL' is supposed to look like for both sides.
+
+
+Chain INPUT (policy ACCEPT 1579 packets, 632K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain FORWARD (policy ACCEPT 30 packets, 2544 bytes)
+ pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 2145 packets, 204K bytes)
+ pkts bytes target     prot opt in     out     source               destination         
