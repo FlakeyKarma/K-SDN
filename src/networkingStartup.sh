@@ -1,24 +1,25 @@
 #!/bin/bash
 
+echo "NETWORK STARTUP"
 #Located in the ~ directory
 TX_IF=$1
 RX_IF=$2
 
 #Disable both interfaces
-sudo ip link set wlp3s0 down
-sudo ip link set eno1 down
+sudo ip link set $TX_IF down
+sudo ip link set $RX_IF down
 
 #Stop netctl NT profile
 sudo netctl stop NT
 
 #Re-enable just the wireless interface - Ethernet will start on it's own in the forwarding script
-#sudo ip link set wlp3s0 up
+sudo ip link set $TX_IF up
 
 #Start wireless connection
 sudo netctl start NT
 
 #Start the forwarding script
-sudo ./forwarding.sh $TX_IF $RX_IF
+sudo ./forwarding.sh $TX_IF $RX_IF $3 $4 $5
 
 
 

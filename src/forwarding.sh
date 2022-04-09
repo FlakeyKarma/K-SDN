@@ -1,5 +1,6 @@
 #Located in the ~ directory
 
+echo 'FORWARDING'
 #IF facing desired net
 TX_IF=$1
 #IF eth
