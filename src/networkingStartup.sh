@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #Located in the ~ directory
+TX_IF=$1
+RX_IF=$2
 
 #Disable both interfaces
 sudo ip link set wlp3s0 down
@@ -16,7 +18,7 @@ sudo netctl stop NT
 sudo netctl start NT
 
 #Start the forwarding script
-sudo ./forwarding.sh
+sudo ./forwarding.sh $TX_IF $RX_IF
 
 
 
