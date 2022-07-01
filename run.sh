@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #IF facing desired net
-TX_IF=wlp6s0
+TX_IF=wlp3s0
 #IF eth
-RX_IF=enp5s0
+RX_IF=eno1
 #Gateway on desired net
 TX_GATEWAY=10.0.0.1
 #RX_NET w/ CIDR

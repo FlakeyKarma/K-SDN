@@ -28,20 +28,26 @@ RX_RUT=$5
 #
 ###
 
+echo ">Adding gateway $TX_GATEWAY to $TX_IF"
 #Will notify you if there is already a route set as default to this gateway
-sudo route add default gw $TX_GATEWAY $TX_IF
+sudo route add default gw ${TX_GATEWAY} ${TX_IF}
 
 #Reset ethernet adapter by shutting it down and deleting the ip that was added
+echo ">Setting $RX_IF down"
 ip link set $RX_IF down
-ip addr del $RX_RUT dev $RX_IF
+echo ">Deleting $RX_RUT on $RX_IF"
+ip addr del ${RX_RUT} dev ${RX_IF}
 
 #Set IP to network with the IP that belongs to the router for the network
-ip addr add $RX_NET dev $RX_IF
-ip link set $RX_IF up #Enable packet forwarding over IPv4
+echo ">Adding $RX_RUT on $RX_IF"
+ip addr add ${RX_RUT} dev ${RX_IF}
+echo ">Setting $RX_IF up"
+ip link set ${RX_IF} up
+echo ">Enable packet forwarding over IPv4"
 sysctl net.ipv4.ip_forward=1
 
 #Make iptables forward packets from ethernet to Wi-Fi
-iptables -t nat -A POSTROUTING -o $TX_IF -s $RX_NET -j MASQUERADE
+iptables -t nat -A POSTROUTING -o ${TX_IF} -s ${RX_NET} -j MASQUERADE
 
 #Reset all daemons with new config files
 sudo systemctl daemon-reload
